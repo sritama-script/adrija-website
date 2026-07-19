@@ -142,3 +142,26 @@
     color: var(--color-foreground);
   }
 }
+
+/* Dr. Adrija site palette */
+:root {
+  --clinic-primary: #4b6549;
+  --clinic-primary-container: #8da989;
+  --clinic-on-primary-container: #263e25;
+  --clinic-primary-fixed: #cdebc7;
+  --clinic-primary-fixed-dim: #b1ceac;
+  --clinic-surface: #f9f9ff;
+  --clinic-surface-container: #e6eeff;
+  --clinic-surface-container-low: #eff3ff;
+  --clinic-secondary: #5b5f5c;
+  --clinic-secondary-container: #dde0dd;
+  --clinic-on-surface: #121c2a;
+  --clinic-on-surface-variant: #434841;
+  --clinic-outline-variant: #c3c8be;
+}
+.font-headline { font-family: 'Playfair Display', serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+.sage-glow { box-shadow: 0 0 20px 4px rgba(141, 169, 137, 0.15); }
+.tonal-card { background-color: #ffffff; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.tonal-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); }
+.material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; font-family: 'Material Symbols Outlined'; }
