@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
-import clinicLogo from "@/assets/clinic-logo.png.asset.json";
-import drAdrija from "@/assets/dr-adrija-photo.jpg.asset.json";
+const clinicLogo = { url: "/logo.png" };
+const drAdrija = { url: "/doctor-photo.jpg" };
 import {
   Dialog,
   DialogContent,
