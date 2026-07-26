@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import clinicLogo from "@/assets/clinic-logo.png.asset.json";
 import drAdrija from "@/assets/dr-adrija-photo.jpg.asset.json";
 import {
@@ -175,8 +175,49 @@ const reviews = [
   { text: "Best decision for my family. Our children are healthier and I feel much more energetic.", name: "Anirban D.", tag: "Family Nutrition" },
 ];
 
+const WHATSAPP_LINK =
+  "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
+const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
+
+function scrollToContact(e: React.MouseEvent) {
+  e.preventDefault();
+  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function Index() {
   const [active, setActive] = useState<CardItem | null>(null);
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormStatus("submitting");
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      access_key: WEB3FORMS_ACCESS_KEY,
+      name: String(formData.get("name") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+      to: CONTACT_EMAIL,
+    };
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFormStatus("success");
+        form.reset();
+      } else {
+        setFormStatus("error");
+      }
+    } catch {
+      setFormStatus("error");
+    }
+  }
 
   return (
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
@@ -208,7 +249,12 @@ function Index() {
               </a>
             ))}
           </nav>
-          <a href="#contact" className="pill-nav px-6 py-3 text-sm font-medium">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pill-nav px-6 py-3 text-sm font-medium"
+          >
             Book Appointment
           </a>
         </div>
@@ -247,7 +293,11 @@ function Index() {
                 ))}
               </div>
               <div className="pt-3 flex flex-wrap gap-4">
-                <a href="#contact" className="btn-primary-cta inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium">
+                <a
+                  href="#contact"
+                  onClick={scrollToContact}
+                  className="btn-primary-cta inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium"
+                >
                   <Icon name="calendar_month" size={18} />
                   Book Consultation
                 </a>
@@ -562,17 +612,19 @@ function Index() {
               <p className="text-sm mb-6" style={{ color: "var(--ink-soft)" }}>
                 We usually respond within one working day.
               </p>
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 {[
-                  { label: "Full Name", type: "text", placeholder: "Enter your name" },
-                  { label: "Email Address", type: "email", placeholder: "you@example.com" },
+                  { label: "Full Name", name: "name", type: "text", placeholder: "Enter your name" },
+                  { label: "Email Address", name: "email", type: "email", placeholder: "you@example.com" },
                 ].map((f) => (
                   <div key={f.label}>
                     <label className="block text-sm font-medium mb-2" style={{ color: "var(--ink)" }}>
                       {f.label}
                     </label>
                     <input
+                      name={f.name}
                       type={f.type}
+                      required
                       placeholder={f.placeholder}
                       className="w-full bg-white rounded-xl px-4 py-3 outline-none focus:ring-2 transition-all"
                       style={{ border: "1px solid rgba(201,165,76,0.35)" }}
@@ -584,17 +636,44 @@ function Index() {
                     Message
                   </label>
                   <textarea
+                    name="message"
+                    required
                     placeholder="How can we help you?"
                     rows={5}
                     className="w-full bg-white rounded-xl px-4 py-3 outline-none focus:ring-2 transition-all"
                     style={{ border: "1px solid rgba(201,165,76,0.35)" }}
                   />
                 </div>
+                {formStatus === "success" && (
+                  <div
+                    className="rounded-xl px-4 py-3 text-sm"
+                    style={{
+                      background: "rgba(141,169,137,0.18)",
+                      color: "var(--sage-700)",
+                      border: "1px solid rgba(75,101,73,0.3)",
+                    }}
+                  >
+                    Thank you! Your message has been sent. We'll get back to you shortly.
+                  </div>
+                )}
+                {formStatus === "error" && (
+                  <div
+                    className="rounded-xl px-4 py-3 text-sm"
+                    style={{
+                      background: "rgba(178,138,52,0.12)",
+                      color: "var(--gold-500)",
+                      border: "1px solid rgba(178,138,52,0.4)",
+                    }}
+                  >
+                    Sorry, something went wrong. Please try again, or reach us directly by phone or WhatsApp at +91 78887 24387.
+                  </div>
+                )}
                 <button
-                  type="button"
-                  className="gradient-btn w-full py-4 rounded-full text-sm font-medium text-white shadow-md hover:opacity-95 transition-all inline-flex items-center justify-center gap-2"
+                  type="submit"
+                  disabled={formStatus === "submitting"}
+                  className="gradient-btn w-full py-4 rounded-full text-sm font-medium text-white shadow-md hover:opacity-95 transition-all inline-flex items-center justify-center gap-2 disabled:opacity-60"
                 >
-                  <Icon name="send" size={18} /> Send Message
+                  <Icon name="send" size={18} /> {formStatus === "submitting" ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </div>
@@ -698,7 +777,10 @@ function Index() {
                 </p>
                 <a
                   href="#contact"
-                  onClick={() => setActive(null)}
+                  onClick={(e) => {
+                    setActive(null);
+                    setTimeout(() => scrollToContact(e), 50);
+                  }}
                   className="btn-primary-cta mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium"
                 >
                   <Icon name="calendar_month" size={16} />
