@@ -177,7 +177,7 @@ const reviews = [
 
 const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
-const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+const WEB3FORMS_ACCESS_KEY = "aa1ccdf5-463d-4f68-97b3-bc564e82ccd2";
 const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
 
 function scrollToContact(e: React.MouseEvent) {
