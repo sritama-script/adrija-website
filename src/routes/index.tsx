@@ -179,6 +179,22 @@ const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
 const WEB3FORMS_ACCESS_KEY = "aa1ccdf5-463d-4f68-97b3-bc564e82ccd2";
 const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
+const CALENDLY_URL = "https://calendly.com/hiresritamach/30min";
+
+declare global {
+  interface Window {
+    Calendly?: { initPopupWidget: (opts: { url: string }) => void };
+  }
+}
+
+function openCalendly(e: React.MouseEvent) {
+  e.preventDefault();
+  if (typeof window !== "undefined" && window.Calendly) {
+    window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+  } else {
+    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+  }
+}
 
 function scrollToContact(e: React.MouseEvent) {
   e.preventDefault();
