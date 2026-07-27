@@ -310,8 +310,8 @@ function Index() {
               </div>
               <div className="pt-3 flex flex-wrap gap-4">
                 <a
-                  href="#contact"
-                  onClick={scrollToContact}
+                  href={CALENDLY_URL}
+                  onClick={openCalendly}
                   className="btn-primary-cta inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium"
                 >
                   <Icon name="calendar_month" size={18} />
