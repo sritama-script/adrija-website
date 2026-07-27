@@ -266,15 +266,12 @@ function Index() {
             ))}
           </nav>
           <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CALENDLY_URL}
+            onClick={openCalendly}
             className="pill-nav px-6 py-3 text-sm font-medium"
           >
             Book Appointment
           </a>
-        </div>
-      </header>
 
       <main className="pt-20 overflow-x-hidden">
         {/* Hero */}
