@@ -792,10 +792,10 @@ function Index() {
                   {active.long}
                 </p>
                 <a
-                  href="#contact"
+                  href={CALENDLY_URL}
                   onClick={(e) => {
                     setActive(null);
-                    setTimeout(() => scrollToContact(e), 50);
+                    openCalendly(e);
                   }}
                   className="btn-primary-cta mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium"
                 >
