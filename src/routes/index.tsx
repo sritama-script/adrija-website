@@ -272,6 +272,9 @@ function Index() {
           >
             Book Appointment
           </a>
+        </div>
+      </header>
+
 
       <main className="pt-20 overflow-x-hidden">
         {/* Hero */}
