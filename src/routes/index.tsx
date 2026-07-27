@@ -179,6 +179,22 @@ const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
 const WEB3FORMS_ACCESS_KEY = "aa1ccdf5-463d-4f68-97b3-bc564e82ccd2";
 const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
+const CALENDLY_URL = "https://calendly.com/hiresritamach/30min";
+
+declare global {
+  interface Window {
+    Calendly?: { initPopupWidget: (opts: { url: string }) => void };
+  }
+}
+
+function openCalendly(e: React.MouseEvent) {
+  e.preventDefault();
+  if (typeof window !== "undefined" && window.Calendly) {
+    window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+  } else {
+    window.open(CALENDLY_URL, "_blank", "noopener,noreferrer");
+  }
+}
 
 function scrollToContact(e: React.MouseEvent) {
   e.preventDefault();
@@ -250,15 +266,15 @@ function Index() {
             ))}
           </nav>
           <a
-            href={WHATSAPP_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={CALENDLY_URL}
+            onClick={openCalendly}
             className="pill-nav px-6 py-3 text-sm font-medium"
           >
             Book Appointment
           </a>
         </div>
       </header>
+
 
       <main className="pt-20 overflow-x-hidden">
         {/* Hero */}
@@ -294,8 +310,8 @@ function Index() {
               </div>
               <div className="pt-3 flex flex-wrap gap-4">
                 <a
-                  href="#contact"
-                  onClick={scrollToContact}
+                  href={CALENDLY_URL}
+                  onClick={openCalendly}
                   className="btn-primary-cta inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium"
                 >
                   <Icon name="calendar_month" size={18} />
@@ -776,10 +792,10 @@ function Index() {
                   {active.long}
                 </p>
                 <a
-                  href="#contact"
+                  href={CALENDLY_URL}
                   onClick={(e) => {
                     setActive(null);
-                    setTimeout(() => scrollToContact(e), 50);
+                    openCalendly(e);
                   }}
                   className="btn-primary-cta mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium"
                 >
