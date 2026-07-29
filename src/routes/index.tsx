@@ -97,7 +97,22 @@ const homeopathyCards: CardItem[] = [
     long: "Constitutional treatment to reduce inflammation, improve mobility and manage chronic pain naturally — supported with posture and nutrition guidance.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80",
   },
+  {
+    icon: "neurology",
+    title: "Headache & Migraine",
+    short: "Chronic headaches, migraine & tension pain",
+    long: "Individualised remedies that address migraine triggers — stress, hormones, sleep and digestion — to reduce the frequency and intensity of attacks without daily painkillers.",
+    image: "https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    icon: "gastroenterology",
+    title: "Digestive Disorders",
+    short: "Acidity, GERD, IBS & constipation",
+    long: "Gentle homeopathic care to calm acidity and reflux, regulate bowel function and settle IBS — combined with tailored dietary guidance for lasting gut comfort.",
+    image: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
+  },
 ];
+
 
 const nutritionCards: CardItem[] = [
   {
