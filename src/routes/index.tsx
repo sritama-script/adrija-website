@@ -175,13 +175,6 @@ const badges = [
   { icon: "videocam", label: "Online Consultation Available" },
 ];
 
-const reviews = [
-  { text: "Very polite and attentive doctor. Highly recommended for anyone looking for holistic care.", name: "Sneha R.", tag: "Nutrition Patient" },
-  { text: "Effective treatment with noticeable improvement within weeks. Truly grateful for the guidance.", name: "Amit K.", tag: "Homeopathy Patient" },
-  { text: "Patient, understanding and professional. She takes the time to listen to every concern.", name: "Priya M.", tag: "PCOS Care" },
-  { text: "My skin has never been clearer. The plan was gentle, simple and actually worked.", name: "Riya S.", tag: "Skin Treatment" },
-  { text: "Best decision for my family. Our children are healthier and I feel much more energetic.", name: "Anirban D.", tag: "Family Nutrition" },
-];
 
 const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
