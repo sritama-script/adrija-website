@@ -346,10 +346,13 @@ function Index() {
         <section id="homeopathy" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-14">
-              <span className="section-label text-gold">Homeopathy</span>
-              <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Gentle. <em className="italic text-sage">Safe.</em> Effective.
+              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+                Homeopathy
               </h2>
+              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+                Gentle. <em className="italic text-sage">Safe.</em> Effective.
+              </p>
+
               <div className="w-24 mx-auto mt-5 gold-divider" />
               <p className="max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 Homeopathy treats the root cause of illness and helps the body heal naturally.
