@@ -543,32 +543,13 @@ function Index() {
               What Our <em className="italic text-sage">Patients</em> Say
             </h2>
             <div className="w-24 mx-auto mt-5 gold-divider" />
-            <div className="mt-14">
-              <Carousel opts={{ align: "start", loop: true }} className="w-full">
-                <CarouselContent className="-ml-6">
-                  {reviews.map((r) => (
-                    <CarouselItem key={r.name} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                      <div className="card-3d p-8 h-full flex flex-col text-left" style={{ cursor: "default" }}>
-                        <div className="flex mb-4" style={{ color: "var(--gold-500)" }}>
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Icon key={i} name="star" size={20} fill={1} />
-                          ))}
-                        </div>
-                        <p className="italic mb-6 leading-relaxed text-[15px]" style={{ color: "var(--ink-soft)" }}>
-                          "{r.text}"
-                        </p>
-                        <div className="mt-auto pt-4" style={{ borderTop: "1px solid rgba(201,165,76,0.25)" }}>
-                          <p className="font-semibold text-sm" style={{ color: "var(--ink)" }}>{r.name}</p>
-                          <p className="text-xs mt-0.5" style={{ color: "var(--sage-700)" }}>{r.tag}</p>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
+            {/* PENDING: real patient reviews to be supplied by Dr. Adrija — placeholders removed */}
+            <div className="mt-12 max-w-2xl mx-auto card-3d p-10" style={{ cursor: "default" }}>
+              <p className="italic text-lg" style={{ color: "var(--ink-soft)" }}>
+                Patient reviews are being updated and will appear here shortly.
+              </p>
             </div>
+
           </div>
         </section>
 
