@@ -281,16 +281,16 @@ function Index() {
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
             <div className="space-y-7">
-              <div className="flex items-center gap-3">
-                <span className="w-10 gold-divider" />
-                <span className="section-label text-gold">Est. Kolkata · Since 2016</span>
-              </div>
               <h1 className="font-headline text-5xl md:text-6xl leading-[1.05]" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Prevention is the <em className="italic text-sage" style={{ fontStyle: "italic" }}>strongest</em> medicine.
+                Heal <em className="italic text-sage" style={{ fontStyle: "italic" }}>Naturally.</em> Live Better.
               </h1>
-              <p className="font-headline text-2xl md:text-[26px] leading-snug" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
-                Dr. Adrija's Clinic — Healthcare · Nutrition · Holistic Wellness.
+              <p className="font-headline text-3xl md:text-4xl leading-snug" style={{ color: "var(--sage-700)", fontWeight: 600 }}>
+                Dr. Adrija's Clinic
               </p>
+              <p className="text-base md:text-lg" style={{ color: "var(--ink-soft)" }}>
+                Personalised Homeopathic Care • Nutrition • Holistic Wellness
+              </p>
+
               <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: "var(--ink-soft)" }}>
                 Treating the individual as a whole — not just the symptoms. Personalised homeopathic
                 care blended with science-backed nutrition and lifestyle guidance to restore your body's
