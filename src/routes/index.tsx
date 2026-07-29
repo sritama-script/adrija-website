@@ -9,13 +9,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -97,7 +90,22 @@ const homeopathyCards: CardItem[] = [
     long: "Constitutional treatment to reduce inflammation, improve mobility and manage chronic pain naturally — supported with posture and nutrition guidance.",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1200&q=80",
   },
+  {
+    icon: "neurology",
+    title: "Headache & Migraine",
+    short: "Chronic headaches, migraine & tension pain",
+    long: "Individualised remedies that address migraine triggers — stress, hormones, sleep and digestion — to reduce the frequency and intensity of attacks without daily painkillers.",
+    image: "https://images.unsplash.com/photo-1494869042583-f6c911f04b4c?auto=format&fit=crop&w=1200&q=80",
+  },
+  {
+    icon: "gastroenterology",
+    title: "Digestive Disorders",
+    short: "Acidity, GERD, IBS & constipation",
+    long: "Gentle homeopathic care to calm acidity and reflux, regulate bowel function and settle IBS — combined with tailored dietary guidance for lasting gut comfort.",
+    image: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
+  },
 ];
+
 
 const nutritionCards: CardItem[] = [
   {
@@ -167,13 +175,6 @@ const badges = [
   { icon: "videocam", label: "Online Consultation Available" },
 ];
 
-const reviews = [
-  { text: "Very polite and attentive doctor. Highly recommended for anyone looking for holistic care.", name: "Sneha R.", tag: "Nutrition Patient" },
-  { text: "Effective treatment with noticeable improvement within weeks. Truly grateful for the guidance.", name: "Amit K.", tag: "Homeopathy Patient" },
-  { text: "Patient, understanding and professional. She takes the time to listen to every concern.", name: "Priya M.", tag: "PCOS Care" },
-  { text: "My skin has never been clearer. The plan was gentle, simple and actually worked.", name: "Riya S.", tag: "Skin Treatment" },
-  { text: "Best decision for my family. Our children are healthier and I feel much more energetic.", name: "Anirban D.", tag: "Family Nutrition" },
-];
 
 const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
@@ -242,9 +243,10 @@ function Index() {
         className="fixed top-0 left-0 w-full z-50 backdrop-blur-md"
         style={{ backgroundColor: "rgba(251,251,247,0.85)", borderBottom: "1px solid rgba(201,165,76,0.15)" }}
       >
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-20">
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-28">
           <a href="#home" className="flex items-center gap-2">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-14 md:h-16 w-auto" />
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 md:h-24 w-auto" />
+
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {[
@@ -276,21 +278,21 @@ function Index() {
       </header>
 
 
-      <main className="pt-20 overflow-x-hidden">
+      <main className="pt-28 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
             <div className="space-y-7">
-              <div className="flex items-center gap-3">
-                <span className="w-10 gold-divider" />
-                <span className="section-label text-gold">Est. Kolkata · Since 2016</span>
-              </div>
               <h1 className="font-headline text-5xl md:text-6xl leading-[1.05]" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Prevention is the <em className="italic text-sage" style={{ fontStyle: "italic" }}>strongest</em> medicine.
+                Heal <em className="italic text-sage" style={{ fontStyle: "italic" }}>Naturally.</em> Live Better.
               </h1>
-              <p className="font-headline text-2xl md:text-[26px] leading-snug" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
-                Dr. Adrija's Clinic — Healthcare · Nutrition · Holistic Wellness.
+              <p className="font-headline text-3xl md:text-4xl leading-snug" style={{ color: "var(--sage-700)", fontWeight: 600 }}>
+                Dr. Adrija's Clinic
               </p>
+              <p className="text-base md:text-lg" style={{ color: "var(--ink-soft)" }}>
+                Personalised Homeopathic Care • Nutrition • Holistic Wellness
+              </p>
+
               <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: "var(--ink-soft)" }}>
                 Treating the individual as a whole — not just the symptoms. Personalised homeopathic
                 care blended with science-backed nutrition and lifestyle guidance to restore your body's
@@ -346,10 +348,13 @@ function Index() {
         <section id="homeopathy" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-14">
-              <span className="section-label text-gold">Homeopathy</span>
-              <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Gentle. <em className="italic text-sage">Safe.</em> Effective.
+              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+                Homeopathy
               </h2>
+              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+                Gentle. <em className="italic text-sage">Safe.</em> Effective.
+              </p>
+
               <div className="w-24 mx-auto mt-5 gold-divider" />
               <p className="max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 Homeopathy treats the root cause of illness and helps the body heal naturally.
@@ -409,10 +414,13 @@ function Index() {
         <section id="nutrition" className="gradient-nutrition py-24 px-5 md:px-8">
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-14">
-              <span className="section-label text-sage">Nutrition</span>
-              <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Eat Right. <em className="italic" style={{ color: "var(--gold-500)" }}>Live Right.</em>
+              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+                Nutrition
               </h2>
+              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+                Eat Right. <em className="italic" style={{ color: "var(--gold-500)" }}>Live Right.</em>
+              </p>
+
               <div className="w-24 mx-auto mt-5 gold-divider" />
               <p className="max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 Personalised nutrition plans tailored to your body, goals and lifestyle — designed to
@@ -494,10 +502,8 @@ function Index() {
               </h2>
               <p className="font-medium" style={{ color: "var(--sage-700)" }}>
                 BHMS · Postgraduate Diploma in Nutrition &amp; Dietetics
-                <span className="block text-sm mt-1" style={{ color: "var(--ink-soft)" }}>
-                  Tulip International Institute, Mumbai
-                </span>
               </p>
+
               <div className="flex gap-2 flex-wrap">
                 {["Doctor", "Nutritionist", "Health Coach"].map((t) => (
                   <span
@@ -543,32 +549,13 @@ function Index() {
               What Our <em className="italic text-sage">Patients</em> Say
             </h2>
             <div className="w-24 mx-auto mt-5 gold-divider" />
-            <div className="mt-14">
-              <Carousel opts={{ align: "start", loop: true }} className="w-full">
-                <CarouselContent className="-ml-6">
-                  {reviews.map((r) => (
-                    <CarouselItem key={r.name} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                      <div className="card-3d p-8 h-full flex flex-col text-left" style={{ cursor: "default" }}>
-                        <div className="flex mb-4" style={{ color: "var(--gold-500)" }}>
-                          {Array.from({ length: 5 }).map((_, i) => (
-                            <Icon key={i} name="star" size={20} fill={1} />
-                          ))}
-                        </div>
-                        <p className="italic mb-6 leading-relaxed text-[15px]" style={{ color: "var(--ink-soft)" }}>
-                          "{r.text}"
-                        </p>
-                        <div className="mt-auto pt-4" style={{ borderTop: "1px solid rgba(201,165,76,0.25)" }}>
-                          <p className="font-semibold text-sm" style={{ color: "var(--ink)" }}>{r.name}</p>
-                          <p className="text-xs mt-0.5" style={{ color: "var(--sage-700)" }}>{r.tag}</p>
-                        </div>
-                      </div>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
+            {/* PENDING: real patient reviews to be supplied by Dr. Adrija — placeholders removed */}
+            <div className="mt-12 max-w-2xl mx-auto card-3d p-10" style={{ cursor: "default" }}>
+              <p className="italic text-lg" style={{ color: "var(--ink-soft)" }}>
+                Patient reviews are being updated and will appear here shortly.
+              </p>
             </div>
+
           </div>
         </section>
 
