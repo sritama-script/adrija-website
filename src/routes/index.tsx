@@ -277,7 +277,7 @@ function Index() {
       </header>
 
 
-      <main className="pt-20 overflow-x-hidden">
+      <main className="pt-28 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
