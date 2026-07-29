@@ -494,10 +494,8 @@ function Index() {
               </h2>
               <p className="font-medium" style={{ color: "var(--sage-700)" }}>
                 BHMS · Postgraduate Diploma in Nutrition &amp; Dietetics
-                <span className="block text-sm mt-1" style={{ color: "var(--ink-soft)" }}>
-                  Tulip International Institute, Mumbai
-                </span>
               </p>
+
               <div className="flex gap-2 flex-wrap">
                 {["Doctor", "Nutritionist", "Health Coach"].map((t) => (
                   <span
