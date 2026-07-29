@@ -409,10 +409,13 @@ function Index() {
         <section id="nutrition" className="gradient-nutrition py-24 px-5 md:px-8">
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-14">
-              <span className="section-label text-sage">Nutrition</span>
-              <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
-                Eat Right. <em className="italic" style={{ color: "var(--gold-500)" }}>Live Right.</em>
+              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+                Nutrition
               </h2>
+              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+                Eat Right. <em className="italic" style={{ color: "var(--gold-500)" }}>Live Right.</em>
+              </p>
+
               <div className="w-24 mx-auto mt-5 gold-divider" />
               <p className="max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
                 Personalised nutrition plans tailored to your body, goals and lifestyle — designed to
