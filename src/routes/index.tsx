@@ -242,9 +242,10 @@ function Index() {
         className="fixed top-0 left-0 w-full z-50 backdrop-blur-md"
         style={{ backgroundColor: "rgba(251,251,247,0.85)", borderBottom: "1px solid rgba(201,165,76,0.15)" }}
       >
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-20">
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-28">
           <a href="#home" className="flex items-center gap-2">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-14 md:h-16 w-auto" />
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 md:h-24 w-auto" />
+
           </a>
           <nav className="hidden lg:flex items-center gap-8">
             {[
