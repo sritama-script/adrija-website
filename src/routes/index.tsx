@@ -260,16 +260,13 @@ function Index() {
   return (
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
-      <header
-        className="fixed top-0 left-0 w-full z-50 backdrop-blur-md"
-        style={{ backgroundColor: "rgba(251,251,247,0.85)", borderBottom: "1px solid rgba(201,165,76,0.15)" }}
-      >
+      <header className="glass-nav fixed top-0 left-0 w-full z-50">
         <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-28">
           <a href="#home" className="flex items-center gap-2">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 md:h-24 w-auto" />
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-24 md:h-28 w-auto" />
 
           </a>
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-3">
             {[
               { href: "#home", label: "Home" },
               { href: "#about", label: "About Me" },
@@ -281,8 +278,9 @@ function Index() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium tracking-wide transition-colors hover:text-sage"
-                style={{ color: "var(--ink-soft)" }}
+                className={`nav-link text-sm font-medium tracking-wide${
+                  activeSection === l.href.slice(1) ? " nav-link-active" : ""
+                }`}
               >
                 {l.label}
               </a>
@@ -291,11 +289,31 @@ function Index() {
           <a
             href={CALENDLY_URL}
             onClick={openCalendly}
-            className="pill-nav px-6 py-3 text-sm font-medium"
+            className="pill-nav pill-nav-sheen px-6 py-3 text-sm font-medium"
           >
             Book Appointment
           </a>
         </div>
+        <nav className="lg:hidden glass-subnav flex items-center gap-2 overflow-x-auto px-5 py-2">
+          {[
+            { href: "#home", label: "Home" },
+            { href: "#about", label: "About Me" },
+            { href: "#homeopathy", label: "Homeopathy" },
+            { href: "#nutrition", label: "Nutrition" },
+            { href: "#reviews", label: "Reviews" },
+            { href: "#contact", label: "Contact" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className={`nav-link whitespace-nowrap text-xs font-medium tracking-wide${
+                activeSection === l.href.slice(1) ? " nav-link-active" : ""
+              }`}
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
       </header>
 
 
