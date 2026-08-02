@@ -317,7 +317,7 @@ function Index() {
       </header>
 
 
-      <main className="pt-28 overflow-x-hidden">
+      <main className="pt-40 lg:pt-28 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
@@ -729,7 +729,7 @@ function Index() {
               <img
                 src={clinicLogo.url}
                 alt="Dr. Adrija's Clinic"
-                className="h-14 w-auto"
+                className="h-24 md:h-28 w-auto max-w-full"
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
