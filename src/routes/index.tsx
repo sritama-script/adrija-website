@@ -542,22 +542,20 @@ function Index() {
         </section>
 
         {/* Reviews */}
-        <section id="reviews" className="gradient-reviews py-24 px-5 md:px-8">
-          <div className="max-w-[1200px] mx-auto text-center">
+        <section id="reviews" className="gradient-reviews py-24 px-0 md:px-0 overflow-hidden">
+          <div className="max-w-[1200px] mx-auto text-center px-5 md:px-8">
             <span className="section-label text-gold">Patient Reviews</span>
             <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
               What Our <em className="italic text-sage">Patients</em> Say
             </h2>
             <div className="w-24 mx-auto mt-5 gold-divider" />
-            {/* PENDING: real patient reviews to be supplied by Dr. Adrija — placeholders removed */}
-            <div className="mt-12 max-w-2xl mx-auto card-3d p-10" style={{ cursor: "default" }}>
-              <p className="italic text-lg" style={{ color: "var(--ink-soft)" }}>
-                Patient reviews are being updated and will appear here shortly.
-              </p>
-            </div>
-
+            <p className="mt-5 text-sm font-semibold tracking-wide" style={{ color: "var(--sage-700)" }}>
+              <span className="text-gold">★</span> 5.0 Rated Clinic · 19+ Google Reviews
+            </p>
           </div>
+          <ReviewsMarquee />
         </section>
+
 
         {/* Contact */}
         <section id="contact" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#fbfbf7" }}>
