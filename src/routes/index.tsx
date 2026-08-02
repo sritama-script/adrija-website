@@ -178,9 +178,9 @@ const badges = [
 
 const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
-const WEB3FORMS_ACCESS_KEY = "aa1ccdf5-463d-4f68-97b3-bc564e82ccd2";
+const WEB3FORMS_ACCESS_KEY = "41ca12a2-3ca8-4aab-9946-10d119ba7670";
 const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
-const CALENDLY_URL = "https://calendly.com/hiresritamach/30min";
+const CALENDLY_URL = "https://calendly.com/dradrija-clinic/30min";
 
 declare global {
   interface Window {
