@@ -70,19 +70,21 @@ const Stars = ({ n }: { n: number }) => (
 
 const Card = ({ r }: { r: Review }) => (
   <article
-    className="card-3d p-7 flex flex-col gap-4 shrink-0 text-left"
+    className="card-3d review-card p-5 sm:p-7 flex flex-col gap-3 sm:gap-4 shrink-0 text-left"
     style={{ width: "min(360px, 82vw)", cursor: "default" }}
   >
-    <div className="flex items-center justify-between gap-3">
-      <h3 className="font-headline text-xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
+    <div className="flex items-center justify-between gap-3 shrink-0">
+      <h3 className="font-headline text-base sm:text-xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
         {r.name}
       </h3>
       <Stars n={r.rating} />
     </div>
-    <div className="gold-divider" />
-    <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-      {r.text}
-    </p>
+    <div className="gold-divider shrink-0" />
+    <div className="review-text-scroll">
+      <p className="text-sm leading-relaxed" style={{ color: "var(--ink-soft)" }}>
+        {r.text}
+      </p>
+    </div>
   </article>
 );
 
