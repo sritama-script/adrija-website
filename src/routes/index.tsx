@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
+import { Menu } from "lucide-react";
 const clinicLogo = { url: "/logo.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
 import ReviewsMarquee from "@/components/ReviewsMarquee";
@@ -11,6 +12,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -178,6 +185,15 @@ const badges = [
 ];
 
 
+const navLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About Me" },
+  { href: "#homeopathy", label: "Homeopathy" },
+  { href: "#nutrition", label: "Nutrition" },
+  { href: "#reviews", label: "Reviews" },
+  { href: "#contact", label: "Contact" },
+];
+
 const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
 const WEB3FORMS_ACCESS_KEY = "41ca12a2-3ca8-4aab-9946-10d119ba7670";
@@ -208,6 +224,7 @@ function Index() {
   const [active, setActive] = useState<CardItem | null>(null);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [activeSection, setActiveSection] = useState<string>("home");
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const ids = ["home", "about", "homeopathy", "nutrition", "reviews", "contact"];
@@ -261,20 +278,12 @@ function Index() {
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
       <header className="glass-nav fixed top-0 left-0 w-full z-50">
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-28">
-          <a href="#home" className="flex items-center gap-2">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-24 md:h-28 w-auto" />
-
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8 h-20 lg:h-28">
+          <a href="#home" className="flex items-center gap-2 shrink-0">
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-12 sm:h-16 md:h-24 lg:h-28 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-3">
-            {[
-              { href: "#home", label: "Home" },
-              { href: "#about", label: "About Me" },
-              { href: "#homeopathy", label: "Homeopathy" },
-              { href: "#nutrition", label: "Nutrition" },
-              { href: "#reviews", label: "Reviews" },
-              { href: "#contact", label: "Contact" },
-            ].map((l) => (
+            {navLinks.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
@@ -286,58 +295,94 @@ function Index() {
               </a>
             ))}
           </nav>
-          <a
-            href={CALENDLY_URL}
-            onClick={openCalendly}
-            className="pill-nav pill-nav-sheen px-6 py-3 text-sm font-medium"
-          >
-            Book Appointment
-          </a>
-        </div>
-        <nav className="lg:hidden glass-subnav flex items-center gap-2 overflow-x-auto px-5 py-2">
-          {[
-            { href: "#home", label: "Home" },
-            { href: "#about", label: "About Me" },
-            { href: "#homeopathy", label: "Homeopathy" },
-            { href: "#nutrition", label: "Nutrition" },
-            { href: "#reviews", label: "Reviews" },
-            { href: "#contact", label: "Contact" },
-          ].map((l) => (
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
-              key={l.href}
-              href={l.href}
-              className={`nav-link whitespace-nowrap text-xs font-medium tracking-wide${
-                activeSection === l.href.slice(1) ? " nav-link-active" : ""
-              }`}
+              href={CALENDLY_URL}
+              onClick={openCalendly}
+              className="pill-nav pill-nav-sheen px-4 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-xs sm:text-sm font-medium hidden sm:inline-flex"
             >
-              {l.label}
+              Book Appointment
             </a>
-          ))}
-        </nav>
+            <button
+              type="button"
+              aria-label="Open menu"
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden flex items-center justify-center w-11 h-11 rounded-full shrink-0"
+              style={{
+                color: "var(--sage-800)",
+                background: "rgba(255,255,255,0.6)",
+                border: "1px solid rgba(201,165,76,0.35)",
+              }}
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
       </header>
 
+      <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+        <SheetContent side="right" className="mobile-menu-glass w-[82vw] sm:max-w-sm p-0">
+          <SheetHeader className="sr-only">
+            <SheetTitle>Menu</SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-col h-full pt-6">
+            <a href="#home" className="flex items-center gap-2 px-6 pb-5 shrink-0">
+              <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-16 w-auto" />
+            </a>
+            <div className="gold-divider mx-6 mb-4" />
+            <nav className="flex flex-col gap-1 px-4">
+              {navLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`mobile-nav-link text-base font-medium tracking-wide${
+                    activeSection === l.href.slice(1) ? " mobile-nav-link-active" : ""
+                  }`}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+            <div className="mt-auto p-6">
+              <a
+                href={CALENDLY_URL}
+                onClick={(e) => {
+                  setMobileOpen(false);
+                  openCalendly(e);
+                }}
+                className="btn-primary-cta w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full text-sm font-medium"
+              >
+                <Icon name="calendar_month" size={18} />
+                Book Appointment
+              </a>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
 
-      <main className="pt-40 lg:pt-28 overflow-x-hidden">
+
+      <main className="pt-20 lg:pt-28 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
             <div className="space-y-7">
-              <h1 className="font-headline text-5xl md:text-6xl leading-[1.05]" style={{ color: "var(--ink)", fontWeight: 600 }}>
+              <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl leading-[1.05]" style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Heal <em className="italic text-sage" style={{ fontStyle: "italic" }}>Naturally.</em> Live Better.
               </h1>
-              <p className="font-headline text-3xl md:text-4xl leading-snug" style={{ color: "var(--sage-700)", fontWeight: 600 }}>
+              <p className="font-headline text-2xl sm:text-3xl md:text-4xl leading-snug" style={{ color: "var(--sage-700)", fontWeight: 600 }}>
                 Dr. Adrija's Clinic
               </p>
-              <p className="text-base md:text-lg" style={{ color: "var(--ink-soft)" }}>
+              <p className="text-sm sm:text-base md:text-lg" style={{ color: "var(--ink-soft)" }}>
                 Personalised Homeopathic Care • Nutrition • Holistic Wellness
               </p>
 
-              <p className="text-base md:text-lg leading-relaxed max-w-xl" style={{ color: "var(--ink-soft)" }}>
+              <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-xl" style={{ color: "var(--ink-soft)" }}>
                 Treating the individual as a whole — not just the symptoms. Personalised homeopathic
                 care blended with science-backed nutrition and lifestyle guidance to restore your body's
                 natural balance.
               </p>
-              <div className="flex flex-wrap gap-2.5 pt-1">
+              <div className="flex flex-wrap gap-2 pt-1">
                 {badges.map((b) => (
                   <div
                     key={b.label}
@@ -349,18 +394,18 @@ function Index() {
                   </div>
                 ))}
               </div>
-              <div className="pt-3 flex flex-wrap gap-4">
+              <div className="pt-3 flex flex-wrap gap-3 sm:gap-4">
                 <a
                   href={CALENDLY_URL}
                   onClick={openCalendly}
-                  className="btn-primary-cta inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium"
+                  className="btn-primary-cta inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full text-sm font-medium"
                 >
                   <Icon name="calendar_month" size={18} />
                   Book Consultation
                 </a>
                 <a
                   href="#homeopathy"
-                  className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-sm font-medium transition-colors"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full text-sm font-medium transition-colors"
                   style={{ color: "var(--sage-700)", border: "1px solid rgba(75,101,73,0.25)" }}
                 >
                   Explore Treatments <Icon name="arrow_forward" size={18} />
@@ -376,7 +421,7 @@ function Index() {
                 className="absolute -bottom-8 -left-8 w-56 h-56 rounded-full blur-3xl"
                 style={{ backgroundColor: "rgba(141,169,137,0.35)" }}
               />
-              <div className="frame-photo w-72 md:w-[420px] aspect-[4/5] relative z-10">
+              <div className="frame-photo w-60 sm:w-72 md:w-[420px] aspect-[4/5] relative z-10">
                 <img src={drAdrija.url} alt="Dr. Adrija Chakraborty" />
               </div>
             </div>
@@ -384,13 +429,13 @@ function Index() {
         </section>
 
         {/* Homeopathy */}
-        <section id="homeopathy" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
+        <section id="homeopathy" className="py-16 sm:py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
           <div className="max-w-[1200px] mx-auto">
-            <div className="text-center mb-14">
-              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+            <div className="text-center mb-10 sm:mb-14">
+              <h2 className="font-headline text-4xl sm:text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
                 Homeopathy
               </h2>
-              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+              <p className="font-headline text-xl sm:text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
                 Gentle. <em className="italic text-sage">Safe.</em> Effective.
               </p>
 
@@ -401,9 +446,9 @@ function Index() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 sm:gap-8">
               {/* Approach card */}
-              <div className="card-3d p-8 self-start">
+              <div className="card-3d p-6 sm:p-8 self-start">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="icon-orb" style={{ width: 44, height: 44, borderRadius: 12 }}>
                     <Icon name="task_alt" size={22} />
@@ -450,13 +495,13 @@ function Index() {
         </section>
 
         {/* Nutrition */}
-        <section id="nutrition" className="gradient-nutrition py-24 px-5 md:px-8">
+        <section id="nutrition" className="gradient-nutrition py-16 sm:py-24 px-5 md:px-8">
           <div className="max-w-[1200px] mx-auto">
-            <div className="text-center mb-14">
-              <h2 className="font-headline text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
+            <div className="text-center mb-10 sm:mb-14">
+              <h2 className="font-headline text-4xl sm:text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
                 Nutrition
               </h2>
-              <p className="font-headline text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+              <p className="font-headline text-xl sm:text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
                 Eat Right. <em className="italic" style={{ color: "var(--gold-500)" }}>Live Right.</em>
               </p>
 
@@ -467,7 +512,7 @@ function Index() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-6 sm:gap-8">
               {/* Service cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 order-2 lg:order-1">
                 {nutritionCards.map((c) => (
@@ -494,7 +539,7 @@ function Index() {
               </div>
 
               {/* Receive card */}
-              <div className="card-3d p-8 self-start order-1 lg:order-2">
+              <div className="card-3d p-6 sm:p-8 self-start order-1 lg:order-2">
                 <div className="flex items-center gap-3 mb-5">
                   <div className="icon-orb" style={{ width: 44, height: 44, borderRadius: 12 }}>
                     <Icon name="restaurant" size={22} />
@@ -516,8 +561,8 @@ function Index() {
         </section>
 
         {/* Doctor Profile */}
-        <section id="about" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#fbfbf7" }}>
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <section id="about" className="py-16 sm:py-24 px-5 md:px-8" style={{ backgroundColor: "#fbfbf7" }}>
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div className="relative">
               <div
                 className="absolute -top-6 -left-6 w-48 h-48 rounded-full blur-3xl"
@@ -536,7 +581,7 @@ function Index() {
                 <span className="w-10 gold-divider" />
                 <span className="section-label text-gold">About the Practitioner</span>
               </div>
-              <h2 className="font-headline text-4xl md:text-5xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Dr. Adrija Chakraborty
               </h2>
               <p className="font-medium" style={{ color: "var(--sage-700)" }}>
@@ -573,7 +618,7 @@ function Index() {
                 </p>
               </div>
               <div className="gold-divider my-4" />
-              <p className="font-headline italic text-2xl md:text-3xl" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
+              <p className="font-headline italic text-xl sm:text-2xl md:text-3xl" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
                 "Prevention is the strongest medicine."
               </p>
             </div>
@@ -581,10 +626,10 @@ function Index() {
         </section>
 
         {/* Reviews */}
-        <section id="reviews" className="gradient-reviews py-24 px-0 md:px-0 overflow-hidden">
+        <section id="reviews" className="gradient-reviews py-16 sm:py-24 px-0 md:px-0 overflow-hidden">
           <div className="max-w-[1200px] mx-auto text-center px-5 md:px-8">
             <span className="section-label text-gold">Patient Reviews</span>
-            <h2 className="font-headline text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
+            <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl mt-4" style={{ color: "var(--ink)", fontWeight: 600 }}>
               What Our <em className="italic text-sage">Patients</em> Say
             </h2>
             <div className="w-24 mx-auto mt-5 gold-divider" />
@@ -597,11 +642,11 @@ function Index() {
 
 
         {/* Contact */}
-        <section id="contact" className="py-24 px-5 md:px-8" style={{ backgroundColor: "#fbfbf7" }}>
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <section id="contact" className="py-16 sm:py-24 px-5 md:px-8" style={{ backgroundColor: "#fbfbf7" }}>
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16">
             <div className="space-y-7">
               <span className="section-label text-gold">Contact</span>
-              <h2 className="font-headline text-4xl md:text-5xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
+              <h2 className="font-headline text-3xl sm:text-4xl md:text-5xl" style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Get in <em className="italic text-sage">Touch</em>
               </h2>
               <div className="w-24 gold-divider" />
@@ -639,14 +684,14 @@ function Index() {
               </div>
             </div>
             <div
-              className="p-8 md:p-10 rounded-3xl"
+              className="p-6 sm:p-8 md:p-10 rounded-3xl"
               style={{
                 background: "#ffffff",
                 border: "1px solid rgba(201,165,76,0.35)",
                 boxShadow: "0 30px 60px -30px rgba(38,62,37,0.2), 0 0 0 6px rgba(247,239,217,0.5)",
               }}
             >
-              <h3 className="font-headline text-2xl md:text-3xl mb-2" style={{ fontWeight: 600 }}>
+              <h3 className="font-headline text-xl sm:text-2xl md:text-3xl mb-2" style={{ fontWeight: 600 }}>
                 Send a Message
               </h3>
               <p className="text-sm mb-6" style={{ color: "var(--ink-soft)" }}>
@@ -722,21 +767,21 @@ function Index() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full pt-14 pb-8 px-5 md:px-8" style={{ backgroundColor: "var(--sage-800)", color: "#f4f0e2" }}>
+      <footer className="w-full pt-12 sm:pt-14 pb-8 px-5 md:px-8" style={{ backgroundColor: "var(--sage-800)", color: "#f4f0e2" }}>
         <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10">
-            <div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 pb-10">
+            <div className="text-center md:text-left">
               <img
                 src={clinicLogo.url}
                 alt="Dr. Adrija's Clinic"
-                className="h-24 md:h-28 w-auto max-w-full"
+                className="h-16 sm:h-24 md:h-28 w-auto max-w-full mx-auto md:mx-0"
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
                 Holistic healthcare, science-backed nutrition and gentle homeopathy — from Kolkata to the world.
               </p>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <p className="section-label mb-4" style={{ color: "var(--gold-200)" }}>Quick Links</p>
               <ul className="space-y-2 text-sm opacity-90">
                 {[
@@ -753,9 +798,9 @@ function Index() {
                 ))}
               </ul>
             </div>
-            <div>
+            <div className="text-center md:text-left">
               <p className="section-label mb-4" style={{ color: "var(--gold-200)" }}>Connect</p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center md:justify-start">
                 {[
                   { icon: "M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" },
                   { icon: "M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" },
@@ -776,10 +821,11 @@ function Index() {
               </p>
             </div>
           </div>
-          <div className="gold-divider opacity-40" />
+          <div className="md:hidden gold-divider opacity-40 my-8" />
+          <div className="hidden md:block gold-divider opacity-40" />
           <div className="pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs opacity-75">
             <p>© 2026 Dr. Adrija Chakraborty. All rights reserved.</p>
-            <div className="flex gap-6">
+            <div className="flex gap-4 sm:gap-6 flex-wrap justify-center">
               <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
               <a href="#" className="hover:text-white transition-colors">Medical Disclaimer</a>
@@ -790,10 +836,10 @@ function Index() {
 
       {/* Modal */}
       <Dialog open={!!active} onOpenChange={(o) => !o && setActive(null)}>
-        <DialogContent className="max-w-2xl p-0 overflow-hidden gap-0" style={{ borderRadius: 24, border: "1px solid rgba(201,165,76,0.35)" }}>
+        <DialogContent className="max-w-2xl w-[92vw] max-h-[92vh] overflow-y-auto p-0 overflow-x-hidden gap-0" style={{ borderRadius: 24, border: "1px solid rgba(201,165,76,0.35)" }}>
           {active && (
             <>
-              <div className="relative h-56 md:h-64 overflow-hidden">
+              <div className="relative h-44 sm:h-56 md:h-64 overflow-hidden">
                 <img src={active.image} alt={active.title} className="w-full h-full object-cover" />
                 <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(38,62,37,0.75) 100%)" }} />
                 <div className="absolute bottom-4 left-6 right-6 flex items-center gap-3 text-white">
@@ -802,9 +848,9 @@ function Index() {
                   </div>
                 </div>
               </div>
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <DialogHeader>
-                  <DialogTitle className="font-headline text-3xl" style={{ fontWeight: 600, color: "var(--ink)" }}>
+                  <DialogTitle className="font-headline text-2xl sm:text-3xl" style={{ fontWeight: 600, color: "var(--ink)" }}>
                     {active.title}
                   </DialogTitle>
                   <DialogDescription className="text-sm" style={{ color: "var(--sage-700)" }}>
