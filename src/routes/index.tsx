@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 const clinicLogo = { url: "/logo.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
+import ReviewsMarquee from "@/components/ReviewsMarquee";
+
 import {
   Dialog,
   DialogContent,
