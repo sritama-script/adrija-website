@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 const clinicLogo = { url: "/logo.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
 import ReviewsMarquee from "@/components/ReviewsMarquee";
@@ -207,6 +207,25 @@ function scrollToContact(e: React.MouseEvent) {
 function Index() {
   const [active, setActive] = useState<CardItem | null>(null);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [activeSection, setActiveSection] = useState<string>("home");
+
+  useEffect(() => {
+    const ids = ["home", "about", "homeopathy", "nutrition", "reviews", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -241,16 +260,13 @@ function Index() {
   return (
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
-      <header
-        className="fixed top-0 left-0 w-full z-50 backdrop-blur-md"
-        style={{ backgroundColor: "rgba(251,251,247,0.85)", borderBottom: "1px solid rgba(201,165,76,0.15)" }}
-      >
+      <header className="glass-nav fixed top-0 left-0 w-full z-50">
         <div className="max-w-[1200px] mx-auto flex justify-between items-center px-5 md:px-8 h-28">
           <a href="#home" className="flex items-center gap-2">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 md:h-24 w-auto" />
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-24 md:h-28 w-auto" />
 
           </a>
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-3">
             {[
               { href: "#home", label: "Home" },
               { href: "#about", label: "About Me" },
@@ -262,8 +278,9 @@ function Index() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-sm font-medium tracking-wide transition-colors hover:text-sage"
-                style={{ color: "var(--ink-soft)" }}
+                className={`nav-link text-sm font-medium tracking-wide${
+                  activeSection === l.href.slice(1) ? " nav-link-active" : ""
+                }`}
               >
                 {l.label}
               </a>
@@ -272,15 +289,35 @@ function Index() {
           <a
             href={CALENDLY_URL}
             onClick={openCalendly}
-            className="pill-nav px-6 py-3 text-sm font-medium"
+            className="pill-nav pill-nav-sheen px-6 py-3 text-sm font-medium"
           >
             Book Appointment
           </a>
         </div>
+        <nav className="lg:hidden glass-subnav flex items-center gap-2 overflow-x-auto px-5 py-2">
+          {[
+            { href: "#home", label: "Home" },
+            { href: "#about", label: "About Me" },
+            { href: "#homeopathy", label: "Homeopathy" },
+            { href: "#nutrition", label: "Nutrition" },
+            { href: "#reviews", label: "Reviews" },
+            { href: "#contact", label: "Contact" },
+          ].map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className={`nav-link whitespace-nowrap text-xs font-medium tracking-wide${
+                activeSection === l.href.slice(1) ? " nav-link-active" : ""
+              }`}
+            >
+              {l.label}
+            </a>
+          ))}
+        </nav>
       </header>
 
 
-      <main className="pt-28 overflow-x-hidden">
+      <main className="pt-40 lg:pt-28 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
@@ -692,7 +729,7 @@ function Index() {
               <img
                 src={clinicLogo.url}
                 alt="Dr. Adrija's Clinic"
-                className="h-14 w-auto"
+                className="h-24 md:h-28 w-auto max-w-full"
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
