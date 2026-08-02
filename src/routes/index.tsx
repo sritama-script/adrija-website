@@ -278,9 +278,9 @@ function Index() {
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
       <header className="glass-nav fixed top-0 left-0 w-full z-50">
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8 h-20 lg:h-28">
+        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8 h-20 lg:h-32">
           <a href="#home" className="flex items-center gap-2 shrink-0">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-12 sm:h-16 md:h-24 lg:h-28 w-auto" />
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-16 sm:h-20 md:h-28 lg:h-32 w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-3">
             {navLinks.map((l) => (
@@ -327,7 +327,7 @@ function Index() {
           </SheetHeader>
           <div className="flex flex-col h-full pt-6">
             <a href="#home" className="flex items-center gap-2 px-6 pb-5 shrink-0">
-              <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-16 w-auto" />
+              <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 w-auto" />
             </a>
             <div className="gold-divider mx-6 mb-4" />
             <nav className="flex flex-col gap-1 px-4">
@@ -362,7 +362,7 @@ function Index() {
       </Sheet>
 
 
-      <main className="pt-20 lg:pt-28 overflow-x-hidden">
+      <main className="pt-20 lg:pt-32 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
@@ -774,7 +774,7 @@ function Index() {
               <img
                 src={clinicLogo.url}
                 alt="Dr. Adrija's Clinic"
-                className="h-16 sm:h-24 md:h-28 w-auto max-w-full mx-auto md:mx-0"
+                className="h-20 sm:h-28 md:h-36 w-auto max-w-full mx-auto md:mx-0"
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
