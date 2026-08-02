@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 const clinicLogo = { url: "/logo.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
 import ReviewsMarquee from "@/components/ReviewsMarquee";
@@ -207,6 +207,25 @@ function scrollToContact(e: React.MouseEvent) {
 function Index() {
   const [active, setActive] = useState<CardItem | null>(null);
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [activeSection, setActiveSection] = useState<string>("home");
+
+  useEffect(() => {
+    const ids = ["home", "about", "homeopathy", "nutrition", "reviews", "contact"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
