@@ -56,12 +56,12 @@ type CardItem = {
   image: string;
 };
 
-const homeopathyCards: CardItem[] = [
+const homoeopathyCards: CardItem[] = [
   {
     icon: "woman",
     title: "Women's Health",
     short: "PCOS, Hormonal Balance & Menstrual Health",
-    long: "Gentle homeopathic care to restore hormonal balance, ease PCOS symptoms, regulate cycles and support reproductive wellness — treating the underlying constitution, not just the symptoms.",
+    long: "Gentle homoeopathic care to restore hormonal balance, ease PCOS symptoms, regulate cycles and support reproductive wellness — treating the underlying constitution, not just the symptoms.",
     image: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=1200&q=80",
   },
   {
@@ -75,7 +75,7 @@ const homeopathyCards: CardItem[] = [
     icon: "face_6",
     title: "Skin Disorders",
     short: "Acne, eczema, psoriasis & pigmentation",
-    long: "Homeopathy heals skin from within. Individualised remedies for chronic and recurring skin issues, restoring clarity and confidence without suppression.",
+    long: "Homoeopathy heals skin from within. Individualised remedies for chronic and recurring skin issues, restoring clarity and confidence without suppression.",
     image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=1200&q=80",
   },
   {
@@ -89,7 +89,7 @@ const homeopathyCards: CardItem[] = [
     icon: "pulmonology",
     title: "Respiratory Disorders",
     short: "Asthma, allergies, sinusitis & recurrent colds",
-    long: "Long-term homeopathic support for chronic respiratory conditions — strengthening immunity and reducing dependence on repeated antibiotics or inhalers.",
+    long: "Long-term homoeopathic support for chronic respiratory conditions — strengthening immunity and reducing dependence on repeated antibiotics or inhalers.",
     image: "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1200&q=80",
   },
   {
@@ -110,7 +110,7 @@ const homeopathyCards: CardItem[] = [
     icon: "gastroenterology",
     title: "Digestive Disorders",
     short: "Acidity, GERD, IBS & constipation",
-    long: "Gentle homeopathic care to calm acidity and reflux, regulate bowel function and settle IBS — combined with tailored dietary guidance for lasting gut comfort.",
+    long: "Gentle homoeopathic care to calm acidity and reflux, regulate bowel function and settle IBS — combined with tailored dietary guidance for lasting gut comfort.",
     image: "https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=1200&q=80",
   },
 ];
@@ -161,7 +161,7 @@ const nutritionCards: CardItem[] = [
   },
 ];
 
-const homeopathyApproach = [
+const homoeopathyApproach = [
   "Individualised Case Taking",
   "Constitutional Treatment",
   "Safe & Natural Medicines",
@@ -188,7 +188,7 @@ const badges = [
 const navLinks = [
   { href: "#home", label: "Home" },
   { href: "#about", label: "About Me" },
-  { href: "#homeopathy", label: "Homeopathy" },
+  { href: "#homoeopathy", label: "Homoeopathy" },
   { href: "#nutrition", label: "Nutrition" },
   { href: "#reviews", label: "Reviews" },
   { href: "#contact", label: "Contact" },
@@ -227,7 +227,7 @@ function Index() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const ids = ["home", "about", "homeopathy", "nutrition", "reviews", "contact"];
+    const ids = ["home", "about", "homoeopathy", "nutrition", "reviews", "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -374,11 +374,11 @@ function Index() {
                 Dr. Adrija's Clinic
               </p>
               <p className="text-sm sm:text-base md:text-lg" style={{ color: "var(--ink-soft)" }}>
-                Personalised Homeopathic Care • Nutrition • Holistic Wellness
+                Personalised Homoeopathic Care • Nutrition • Holistic Wellness
               </p>
 
               <p className="text-sm sm:text-base md:text-lg leading-relaxed max-w-xl" style={{ color: "var(--ink-soft)" }}>
-                Treating the individual as a whole — not just the symptoms. Personalised homeopathic
+                Treating the individual as a whole — not just the symptoms. Personalised homoeopathic
                 care blended with science-backed nutrition and lifestyle guidance to restore your body's
                 natural balance.
               </p>
@@ -404,7 +404,7 @@ function Index() {
                   Book Consultation
                 </a>
                 <a
-                  href="#homeopathy"
+                  href="#homoeopathy"
                   className="inline-flex items-center gap-2 px-5 sm:px-6 py-3.5 sm:py-4 rounded-full text-sm font-medium transition-colors"
                   style={{ color: "var(--sage-700)", border: "1px solid rgba(75,101,73,0.25)" }}
                 >
@@ -428,12 +428,12 @@ function Index() {
           </div>
         </section>
 
-        {/* Homeopathy */}
-        <section id="homeopathy" className="py-16 sm:py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
+        {/* Homoeopathy */}
+        <section id="homoeopathy" className="py-16 sm:py-24 px-5 md:px-8" style={{ backgroundColor: "#eef3ea" }}>
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-10 sm:mb-14">
               <h2 className="font-headline text-4xl sm:text-5xl md:text-7xl" style={{ color: "var(--ink)", fontWeight: 700 }}>
-                Homeopathy
+                Homoeopathy
               </h2>
               <p className="font-headline text-xl sm:text-2xl md:text-3xl mt-3" style={{ color: "var(--sage-700)", fontWeight: 500 }}>
                 Gentle. <em className="italic text-sage">Safe.</em> Effective.
@@ -441,7 +441,7 @@ function Index() {
 
               <div className="w-24 mx-auto mt-5 gold-divider" />
               <p className="max-w-2xl mx-auto mt-6 text-base md:text-lg leading-relaxed" style={{ color: "var(--ink-soft)" }}>
-                Homeopathy treats the root cause of illness and helps the body heal naturally.
+                Homoeopathy treats the root cause of illness and helps the body heal naturally.
                 Every treatment is tailored to your constitution, history and lifestyle.
               </p>
             </div>
@@ -457,7 +457,7 @@ function Index() {
                 </div>
                 <div className="gold-divider mb-5" />
                 <ul className="space-y-3.5">
-                  {homeopathyApproach.map((item) => (
+                  {homoeopathyApproach.map((item) => (
                     <li key={item} className="check-item">
                       <span className="check-dot"><Icon name="check" size={14} /></span>
                       <span className="text-[15px]" style={{ color: "var(--ink-soft)" }}>{item}</span>
@@ -468,7 +468,7 @@ function Index() {
 
               {/* Condition cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                {homeopathyCards.map((c) => (
+                {homoeopathyCards.map((c) => (
                   <button
                     key={c.title}
                     type="button"
@@ -606,7 +606,7 @@ function Index() {
               <div className="space-y-4 leading-relaxed text-[15px] md:text-base" style={{ color: "var(--ink-soft)" }}>
                 <p>
                   BHMS from Lord Mahavira Homoeopathic Medical College, Ludhiana, with 8+ years of
-                  clinical experience bridging traditional homeopathy and modern nutritional science.
+                  clinical experience bridging traditional homoeopathy and modern nutritional science.
                 </p>
                 <p>
                   Senior Consultant with the World Cancer Care Charitable Institute, Jalandhar, and
@@ -778,7 +778,7 @@ function Index() {
                 style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
-                Holistic healthcare, science-backed nutrition and gentle homeopathy — from Kolkata to the world.
+                Holistic healthcare, science-backed nutrition and gentle homoeopathy — from Kolkata to the world.
               </p>
             </div>
             <div className="text-center md:text-left">
@@ -787,7 +787,7 @@ function Index() {
                 {[
                   { href: "#home", label: "Home" },
                   { href: "#about", label: "About Me" },
-                  { href: "#homeopathy", label: "Homeopathy" },
+                  { href: "#homoeopathy", label: "Homoeopathy" },
                   { href: "#nutrition", label: "Nutrition" },
                   { href: "#reviews", label: "Reviews" },
                   { href: "#contact", label: "Contact" },

@@ -26,7 +26,7 @@ export const reviews: Review[] = [
   {
     name: "Sibani Banerjee",
     rating: 5,
-    text: "I had been suffering from knee pain, waist pain, joint pain and other chronic ailments for quite some time. Over the last 1 year, I have been greatly benefited from Dr. Adrija's homeopathic treatment. Her medicines have worked like magic for me and my overall health has improved significantly. Dr. Adrija is extremely patient and listens to every problem very carefully before prescribing medicines. She explains the treatment properly and makes you feel comfortable and positive about the healing process. Her approach is very gentle yet very effective. I am truly grateful for her treatment and would highly recommend her clinic to anyone looking for safe and effective homeopathic treatment for chronic problems.",
+    text: "I had been suffering from knee pain, waist pain, joint pain and other chronic ailments for quite some time. Over the last 1 year, I have been greatly benefited from Dr. Adrija's homoeopathic treatment. Her medicines have worked like magic for me and my overall health has improved significantly. Dr. Adrija is extremely patient and listens to every problem very carefully before prescribing medicines. She explains the treatment properly and makes you feel comfortable and positive about the healing process. Her approach is very gentle yet very effective. I am truly grateful for her treatment and would highly recommend her clinic to anyone looking for safe and effective homoeopathic treatment for chronic problems.",
   },
   {
     name: "Goutami De",
