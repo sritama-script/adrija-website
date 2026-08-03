@@ -365,8 +365,18 @@ function Index() {
       <main className="pt-24 sm:pt-28 lg:pt-40 overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
-          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 py-20 md:py-28">
+          <div className="max-w-[1200px] mx-auto px-5 md:px-8 pt-14 md:pt-20">
+            <div className="hero-logo-wrap">
+              <img
+                src={clinicLogo.url}
+                alt="Dr. Adrija's Clinic — Homoeopathy | Nutrition | Healthcare"
+                className="hero-logo"
+              />
+            </div>
+          </div>
+          <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 pt-8 pb-20 md:pt-10 md:pb-28">
             <div className="space-y-7">
+
               <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl leading-[1.05]" style={{ color: "var(--ink)", fontWeight: 600 }}>
                 Heal <em className="italic text-sage" style={{ fontStyle: "italic" }}>Naturally.</em> Live Better.
               </h1>
