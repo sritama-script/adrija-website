@@ -367,11 +367,19 @@ function Index() {
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto px-5 md:px-8 pt-14 md:pt-20">
             <div className="hero-logo-wrap">
+              <span className="hero-accent" aria-hidden="true">
+                <Leaf className="hero-accent-icon" strokeWidth={1.25} />
+                <span className="hero-accent-line" />
+              </span>
               <img
                 src={clinicLogo.url}
                 alt="Dr. Adrija's Clinic — Homoeopathy | Nutrition | Healthcare"
                 className="hero-logo"
               />
+              <span className="hero-accent" aria-hidden="true">
+                <span className="hero-accent-line" />
+                <Leaf className="hero-accent-icon hero-accent-icon-flip" strokeWidth={1.25} />
+              </span>
             </div>
           </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 pt-8 pb-20 md:pt-10 md:pb-28">
