@@ -408,8 +408,9 @@ html, body { overflow-x: hidden; }
   opacity: 0.9;
 }
 .hero-accent-icon-flip { transform: scaleX(-1); }
-@media (max-width: 420px) {
-  .hero-accent { max-width: 56px; }
+@media (max-width: 640px) {
+  .hero-logo { width: min(420px, 58vw); }
+  .hero-accent { max-width: 90px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-accent { animation: none; }
@@ -425,7 +426,8 @@ html, body { overflow-x: hidden; }
 }
 .hero-logo {
   position: relative;
-  width: min(560px, 88vw);
+  width: min(520px, 62vw);
+  flex: none;
   height: auto;
   max-width: 100%;
   filter: drop-shadow(0 18px 34px rgba(38, 62, 37, 0.18));
