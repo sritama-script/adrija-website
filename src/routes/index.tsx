@@ -367,12 +367,20 @@ function Index() {
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto px-5 md:px-8 pt-14 md:pt-20">
             <div className="hero-logo-wrap">
+              <span className="hero-dots" aria-hidden="true">
+                {[
+                  "hero-dot d1", "hero-dot d2", "hero-dot d3", "hero-dot d4",
+                  "hero-dot d5", "hero-dot d6", "hero-dot d7", "hero-dot d8",
+                ].map((c) => (
+                  <span key={c} className={c} />
+                ))}
+              </span>
               <span className="hero-accent" aria-hidden="true">
                 <Leaf className="hero-accent-icon" strokeWidth={1.25} />
                 <span className="hero-accent-line" />
               </span>
               <img
-                src={clinicLogo.url}
+                src="/logo-transparent.png"
                 alt="Dr. Adrija's Clinic — Homoeopathy | Nutrition | Healthcare"
                 className="hero-logo"
               />
