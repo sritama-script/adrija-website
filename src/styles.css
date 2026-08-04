@@ -381,7 +381,38 @@ html, body { overflow-x: hidden; }
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: clamp(8px, 2.5vw, 28px);
   padding: 8px 0 4px;
+}
+.hero-accent {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: clamp(6px, 1.5vw, 12px);
+  animation: hero-logo-reveal 1100ms cubic-bezier(.2,.7,.2,1) both;
+}
+.hero-accent-line {
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,165,76,0) 0%, rgba(201,165,76,0.75) 50%, rgba(201,165,76,0) 100%);
+}
+.hero-accent-icon {
+  flex: none;
+  width: clamp(14px, 3.2vw, 22px);
+  height: clamp(14px, 3.2vw, 22px);
+  color: var(--sage-400);
+  opacity: 0.9;
+}
+.hero-accent-icon-flip { transform: scaleX(-1); }
+@media (max-width: 420px) {
+  .hero-accent { max-width: 56px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-accent { animation: none; }
 }
 .hero-logo-wrap::before {
   content: "";
