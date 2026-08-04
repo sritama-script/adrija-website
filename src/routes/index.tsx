@@ -178,7 +178,7 @@ const nutritionReceive = [
 ];
 
 const badges = [
-  { icon: "star", label: "5.0 Rated Clinic · 45+ Reviews" },
+  { icon: "star", label: "5.0 Rated Clinic · 61+ Reviews" },
   { icon: "workspace_premium", label: "8+ Years Experience" },
   { icon: "vital_signs", label: "Integrated Treatment + Nutrition" },
   { icon: "videocam", label: "Online Consultation Available" },
