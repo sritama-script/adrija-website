@@ -798,10 +798,10 @@ function Index() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 pb-10">
             <div className="text-center md:text-left">
               <img
-                src={clinicLogo.url}
+                src="/logo-transparent.png"
                 alt="Dr. Adrija's Clinic"
                 className="h-28 sm:h-40 md:h-52 w-auto max-w-full mx-auto md:mx-0"
-                style={{ filter: "brightness(0) invert(1)", opacity: 0.9 }}
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.92 }}
               />
               <p className="mt-4 text-sm leading-relaxed opacity-80 max-w-xs">
                 Holistic healthcare, science-backed nutrition and gentle homoeopathy — from Kolkata to the world.
