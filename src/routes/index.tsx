@@ -198,7 +198,7 @@ const WHATSAPP_LINK =
   "https://wa.me/917888724387?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation";
 const WEB3FORMS_ACCESS_KEY = "41ca12a2-3ca8-4aab-9946-10d119ba7670";
 const CONTACT_EMAIL = "dradrija.clinic@gmail.com";
-const CALENDLY_URL = "https://calendly.com/dradrija-clinic/30min";
+const CALENDLY_URL = "https://calendly.com/dradrija-clinic/new-meeting";
 
 declare global {
   interface Window {
