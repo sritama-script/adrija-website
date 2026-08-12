@@ -301,10 +301,10 @@ function Index() {
   return (
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
-      <header className="glass-nav fixed top-0 left-0 w-full z-50">
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8 h-24 sm:h-28 lg:h-40">
-          <a href="#home" className="flex items-center gap-2 shrink-0">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto" />
+      <header ref={headerRef} className="glass-nav nav-dynamic fixed top-0 left-0 w-full z-50">
+        <div className="nav-bar max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8">
+          <a href="#home" className="flex items-center gap-2 shrink-0 min-w-0">
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="nav-logo w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-3">
             {navLinks.map((l) => (
