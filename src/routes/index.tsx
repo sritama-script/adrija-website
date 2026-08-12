@@ -386,7 +386,7 @@ function Index() {
       </Sheet>
 
 
-      <main className="pt-24 sm:pt-28 lg:pt-40 overflow-x-hidden">
+      <main className="nav-offset overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 pt-8 pb-20 md:pt-10 md:pb-28">
