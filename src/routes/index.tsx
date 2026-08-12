@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
-import { Menu, Leaf } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { Menu } from "lucide-react";
 const clinicLogo = { url: "/logo.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
 import ReviewsMarquee from "@/components/ReviewsMarquee";
@@ -225,6 +225,30 @@ function Index() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [activeSection, setActiveSection] = useState<string>("home");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // Scroll-linked navbar shrink: --nav-t goes 0 (top) -> 1 (scrolled)
+  useEffect(() => {
+    const SHRINK_DISTANCE = 220;
+    let frame = 0;
+    const apply = () => {
+      frame = 0;
+      const t = Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
+      headerRef.current?.style.setProperty("--nav-t", t.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(apply);
+    };
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
 
   useEffect(() => {
     const ids = ["home", "about", "homoeopathy", "nutrition", "reviews", "contact"];
@@ -277,10 +301,10 @@ function Index() {
   return (
     <div className="font-body" style={{ backgroundColor: "#fbfbf7", color: "var(--ink)" }}>
       {/* Header */}
-      <header className="glass-nav fixed top-0 left-0 w-full z-50">
-        <div className="max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8 h-24 sm:h-28 lg:h-40">
-          <a href="#home" className="flex items-center gap-2 shrink-0">
-            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="h-20 sm:h-24 md:h-32 lg:h-40 w-auto" />
+      <header ref={headerRef} className="glass-nav nav-dynamic fixed top-0 left-0 w-full z-50">
+        <div className="nav-bar max-w-[1200px] mx-auto flex justify-between items-center px-4 sm:px-5 md:px-8">
+          <a href="#home" className="flex items-center gap-2 shrink-0 min-w-0">
+            <img src={clinicLogo.url} alt="Dr. Adrija's Clinic" className="nav-logo w-auto" />
           </a>
           <nav className="hidden lg:flex items-center gap-3">
             {navLinks.map((l) => (
@@ -362,34 +386,9 @@ function Index() {
       </Sheet>
 
 
-      <main className="pt-24 sm:pt-28 lg:pt-40 overflow-x-hidden">
+      <main className="nav-offset overflow-x-hidden">
         {/* Hero */}
         <section id="home" className="gradient-hero relative">
-          <div className="max-w-[1200px] mx-auto px-5 md:px-8 pt-14 md:pt-20">
-            <div className="hero-logo-wrap">
-              <span className="hero-dots" aria-hidden="true">
-                {[
-                  "hero-dot d1", "hero-dot d2", "hero-dot d3", "hero-dot d4",
-                  "hero-dot d5", "hero-dot d6", "hero-dot d7", "hero-dot d8",
-                ].map((c) => (
-                  <span key={c} className={c} />
-                ))}
-              </span>
-              <span className="hero-accent" aria-hidden="true">
-                <Leaf className="hero-accent-icon" strokeWidth={1.25} />
-                <span className="hero-accent-line" />
-              </span>
-              <img
-                src="/logo-transparent.png"
-                alt="Dr. Adrija's Clinic — Homoeopathy | Nutrition | Healthcare"
-                className="hero-logo"
-              />
-              <span className="hero-accent" aria-hidden="true">
-                <span className="hero-accent-line" />
-                <Leaf className="hero-accent-icon hero-accent-icon-flip" strokeWidth={1.25} />
-              </span>
-            </div>
-          </div>
           <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-8 pt-8 pb-20 md:pt-10 md:pb-28">
             <div className="space-y-7">
 
