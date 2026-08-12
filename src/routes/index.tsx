@@ -225,6 +225,30 @@ function Index() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [activeSection, setActiveSection] = useState<string>("home");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
+
+  // Scroll-linked navbar shrink: --nav-t goes 0 (top) -> 1 (scrolled)
+  useEffect(() => {
+    const SHRINK_DISTANCE = 220;
+    let frame = 0;
+    const apply = () => {
+      frame = 0;
+      const t = Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
+      headerRef.current?.style.setProperty("--nav-t", t.toFixed(3));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(apply);
+    };
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
 
   useEffect(() => {
     const ids = ["home", "about", "homoeopathy", "nutrition", "reviews", "contact"];
