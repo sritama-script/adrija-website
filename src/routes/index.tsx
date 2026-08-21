@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Menu } from "lucide-react";
-const clinicLogo = { url: "/logo.png" };
+const clinicLogo = { url: "/logo-transparent.png" };
 const drAdrija = { url: "/doctor-photo.jpg" };
 import ReviewsMarquee from "@/components/ReviewsMarquee";
 
